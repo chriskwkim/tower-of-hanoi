@@ -7,11 +7,10 @@ import (
 )
 
 func main() {
-	arg := os.Args[1]
 
 	n := 3
-	if arg != "" {
-		nArg, err := strconv.Atoi(arg)
+	if len(os.Args) > 1 && os.Args[1] != "" {
+		nArg, err := strconv.Atoi(os.Args[1])
 
 		if err != nil {
 			fmt.Println("Wrong argument, using n = 3")
@@ -41,19 +40,10 @@ func main() {
 	buffTower.SetCallback(callbackFunc)
 	destTower.SetCallback(callbackFunc)
 
-	// Display Initial Configuration
-	// fromTower.ShowTower()
-	// buffTower.ShowTower()
-	// destTower.ShowTower()
-	// callbackFunc()
+	callbackFunc()
 
 	towers[0].MoveDisks(n, towers[2], towers[1])
 
-	// Display Resulting Configuration
-	// fromTower.ShowTower()
-	// buffTower.ShowTower()
-	// destTower.ShowTower()
-	// callbackFunc()
 }
 
 func displayTowersCallback(fromTower *Tower, buffTower *Tower, destTower *Tower) func() {
